@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>OpenMakita ESP</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="header-left">
+    <div class="logo">🔋</div>
+    <div class="title-block">
+      <div class="title">OpenMakita ESP</div>
+      <div class="subtitle" id="subtitle">Диагностика батареи</div>
+    </div>
+  </div>
+  <div class="header-right">
+     <div class="lang-block">
+        <button id="btnEN" class="lang">EN</button>
+        <button id="btnUA" class="lang active">UA</button>
+        <button id="btnRU" class="lang">RU</button>
+      </div>
+  </div>
+   <div class="header-status" id="statusWidget">
+      <div id="statusText">…</div>
+    </div>
+</header>
+<main class="container">
+    <div id="limitedSupportAlert" class="alert info" style="display: none;"></div>
+    
+    <section class="actions card">
+        <div class="actions-grid">
+            <div class="button-row">
+                <div class="button-pair">
+                    <button id="btnReadStatic" class="big btn-data">1. Read Info</button>
+                    <button id="btnReadDynamic" class="big" disabled>2. Update Data</button>
+                </div>
+            </div>
+            <div class="hint-row">
+                <div class="hint-pair">
+                    <div class="btn-hint" id="hintReadStatic">Identify model and read static data</div>
+                    <div class="btn-hint" id="hintReadDynamic">Read voltages and temperatures</div>
+                </div>
+            </div>
+            
+            <div id="serviceActions" class="service-actions-block"> 
+                <div class="button-row">
+                    <div class="button-pair">
+                        <button id="btnClearErrors" class="big" disabled>Clear Errors</button>
+                        <button id="btnLed" class="big" disabled>Toggle LED</button>
+                    </div>
+                </div>
+                <div class="hint-row">
+                    <div class="hint-pair">
+                        <div class="btn-hint" id="hintClear">Reset BMS errors</div>
+                        <div class="btn-hint" id="hintLed">Turn on/off battery LEDs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="notification" style="display:none;"></div>
+    </section>
+    
+    <section class="card" id="overviewCard" style="display: none;">
+        <div class="card-header">
+            <h2 id="sectionTitle">Battery Parameters</h2>
+        </div>
+        <div class="kv" id="data-table"></div>
+        
+        <div class="battery-container">
+            <div class="battery-pack"> 
+                <div class="battery-cells" id="cellsArea">
+                    </div>
+                <div class="battery-numbers" id="cellsNumbers">
+                    </div>
+            </div>
+        </div>
+        
+        <div class="pack-summary" id="packSummary"></div>
+        <div class="alerts" id="alertsArea"></div>
+    </section>
+
+    <details class="log-spoiler card small">
+        <summary id="rawTitle">Log</summary>
+        <pre id="log" class="logbox">Initializing...</pre>
+    </details>
+</main>
+<footer class="footer">
+  <div id="footerText">Интерфейс: UA / RU — Переключить в верхнем меню. Версия: ESP-OBI Web UI</div>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

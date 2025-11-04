@@ -1,0 +1,20 @@
+# PlatformIO
+.pio/
+/env/
+
+# Build files (firmware)
+*.bin
+*.elf
+*.hex
+
+# SPIFFS (временные файлы)
+/spiffs_image/
+
+# Arduino IDE specific
+.arduino/
+*.ino.hex
+*.ino.bin
+
+# macOS / Windows temporary files
+.DS_Store
+Thumbs.db

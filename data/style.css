@@ -1,0 +1,510 @@
+/* data/style.css - ИСПРАВЛЕННАЯ ВЕРСИЯ (СЖАТИЕ V2 + ФИКС 0V ВИЗУАЛИЗАЦИИ) */
+
+:root{
+  --bg: #f4f6f9; --card: #ffffff; --muted: #6b6b6b; --primary: #1976d2;
+  --warn: #d32f2f; --success: #2e7d32; --radius: 12px; --cell-gap: 12px;
+  --ui-font: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --crit-low: #ff0000;
+  --gap-v-min: 4px; /* НОВЫЙ минимальный вертикальный отступ */
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:var(--ui-font); background:var(--bg); color:#111;
+  -webkit-font-smoothing:antialiased; font-size:16px;
+}
+
+/* --- СЖАТЫЙ TOPBAR --- */
+.topbar{
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+  align-items: center;
+  padding: 8px 12px; 
+  background: #fff; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+  gap: 12px; 
+}
+.header-left{ 
+    display:flex; 
+    align-items:center; 
+    gap:8px; 
+    flex-grow: 1; 
+}
+.header-right{ 
+    display:flex; 
+    align-items:center; 
+    gap:12px; 
+    flex-shrink: 0; 
+}
+.header-status {
+  width: 100%; 
+  order: 3; 
+  background: #f3f6fa; 
+  border-radius: 8px;
+  padding: 6px 8px; 
+  text-align: center; 
+  font-weight: 600; 
+  font-size: 14px;
+}
+.logo{font-size:24px;} 
+.title-block{display:flex;flex-direction:column;}
+.title{font-weight:600;font-size:16px;} 
+.subtitle{font-size:11px;color:var(--muted)} 
+.lang-block{ display:flex; gap: 2px; background:#f3f6fa; border-radius:8px; padding: 4px; }
+.lang{
+  border-radius:6px; padding:4px 8px; border:none; background:transparent;
+  cursor:pointer; font-size:14px;
+}
+.lang.active{background:var(--primary); color:white; font-weight:600}
+
+.btn-refresh{ display: none !important; }
+
+.container{max-width:980px;margin:12px auto;padding:0 10px}
+.card{
+  background:var(--card); border-radius:var(--radius); padding:12px;
+  margin-bottom:12px; box-shadow:0 2px 8px rgba(30,50,80,0.04);
+}
+.card.small{padding:8px}
+.card-header{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:8px; gap:8px;
+}
+.card-header h2, .card-header h3{ margin:0; font-size:18px; font-weight:600; }
+
+/* --- УМЕНЬШЕНИЕ ОТСТУПОВ МЕЖДУ СТРОКАМИ КНОПОК --- */
+.actions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-v-min); /* ИСПОЛЬЗУЕМ МИНИМАЛЬНЫЙ ОТСТУП */
+    width: 100%;
+}
+.service-actions-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-v-min);
+    width: 100%;
+    margin-top: var(--gap-v-min); /* Дополнительный отступ для отделения блоков */
+}
+.button-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+}
+.button-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;
+}
+.hint-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.hint-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;
+}
+.big{
+    min-height: 38px; /* СЖАТИЕ V2: Дальнейшее сжатие высоты кнопки */
+    padding: 6px 12px; /* СЖАТИЕ V2: Уменьшен padding */
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    transition: background-color 0.2s, filter 0.2s;
+    width: 100%;
+}
+.big:hover:not(:disabled){filter:brightness(0.95)}
+.big:disabled { background-color: #e0e0e0; color: #9e9e9e; cursor: not-allowed; }
+.btn-data { background-color: var(--primary); color: white; }
+.btn-service { background-color: var(--warn); color: white; }
+.btn-func { background-color: var(--success); color: white; }
+.btn-hint { 
+    font-size: 10px; /* СЖАТИЕ V2: Уменьшен шрифт подсказки */
+    color: var(--muted); 
+    text-align: center; 
+    min-height: 2.2em; /* СЖАТИЕ V2: Дальнейшее сжатие высоты */
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+/* --- Стили для Спиннера --- */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* -------------------------- */
+
+.kv { display: flex; flex-direction: column; gap: 6px; } 
+.kv-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid #f0f0f0; padding-bottom: 6px; 
+  font-size: 15px;
+}
+.kv-row:last-child { border-bottom: none; }
+.k { color: var(--muted); flex-shrink: 0; margin-right: 16px; }
+.v { font-weight: 600; text-align: right; word-break: break-all; }
+
+/* --- Стили для Бэйджей --- */
+.badge {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-block;
+}
+.badge-danger { background-color: var(--warn); }
+.badge-success { background-color: var(--success); }
+/* -------------------------- */
+
+/* --- СЖАТИЕ И ПОДЪЕМ КОНТУРА БАТАРЕИ --- */
+.battery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px auto 4px; /* СЖАТИЕ V2: ПОДНЯТ ВЫШЕ (10px) и СЖАТ СНИЗУ (4px) */
+    max-width: 500px;
+}
+.battery-pack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; 
+    padding: 12px; /* СЖАТИЕ V2: Сильное сжатие контура */
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    width: 100%;
+}
+.battery-cells {
+    display: flex;
+    justify-content: center;
+    gap: var(--cell-gap);
+    position: relative; 
+    width: 100%;
+}
+.battery-numbers {
+    display: flex;
+    justify-content: center;
+    gap: var(--cell-gap);
+    width: 100%;
+}
+.cell-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65px; 
+}
+.cell-number {
+    width: 65px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.battery-connectors {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+.connector {
+    position: absolute;
+    background: #555;
+    height: 4px;
+    border-radius: 2px;
+    z-index: 0;
+}
+.cell-gfx {
+    width: 65px;
+    height: 100px;
+    border: 2px solid #555;
+    border-radius: 8px;
+    background-color: #e0e0e0;
+    position: relative;
+    display: flex;
+    z-index: 1;
+}
+.cell-gfx.imbalanced {
+    background-color: #f0f0f0 !important;
+    border: 2px dashed var(--warn) !important;
+    animation: pulse-warn 2s infinite;
+}
+@keyframes pulse-warn {
+    0% { border-color: var(--warn); }
+    50% { border-color: #ff9800; }
+    100% { border-color: var(--warn); }
+}
+
+/* --- FIX 3: Стиль для МЕРТВОЙ (0V) ячейки --- */
+.cell-gfx.dead-cell {
+    background-color: #f0f0f0 !important;
+    border: 2px solid var(--crit-low) !important;
+    position: relative; /* Нужно для pseudo-element */
+    overflow: hidden; /* Чтобы крест не вылезал за границы */
+}
+
+.cell-gfx.dead-cell::before,
+.cell-gfx.dead-cell::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%; /* Ширина креста (относительно 65px) */
+    height: 6px; /* Толщина креста */
+    background-color: var(--crit-low);
+    transform-origin: center;
+    z-index: 10;
+}
+
+.cell-gfx.dead-cell::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cell-gfx.dead-cell::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Скрываем содержимое мертвой ячейки, чтобы крест был виден */
+.cell-gfx.dead-cell .cell-gfx-content,
+.cell-gfx.dead-cell .cell-cap {
+    opacity: 0.1; /* Делаем текст и полюсы почти невидимыми */
+}
+
+/* --- Стиль для критически низкой ячейки (НЕ 0V) --- */
+.cell-gfx.crit-low-animated {
+    background-color: #f0f0f0 !important;
+    border: 2px dashed var(--crit-low) !important;
+    animation: pulse-crit 1s infinite alternate;
+}
+@keyframes pulse-crit {
+    0% { border-color: var(--crit-low); background-color: #fff0f0; }
+    100% { border-color: #8b0000; background-color: #fce7e7; }
+}
+/* ------------------------------------------ */
+
+.cell-container.flipped .cell-gfx-content {
+    flex-direction: column-reverse;
+}
+.cell-cap {
+    position: absolute;
+    width: 24px;
+    height: 6px;
+    background-color: #777;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -8px;
+    border-radius: 3px 3px 0 0;
+}
+.cell-container.flipped .cell-cap {
+    top: auto;
+    bottom: -8px;
+    border-radius: 0 0 3px 3px;
+}
+.cell-gfx-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 5px 0;
+    z-index: 1; /* Убедимся, что контент под крестом */
+    position: relative;
+}
+.cell-pole { 
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #333; 
+}
+.cell-gfx-vol { 
+    font-size: 14px; 
+    font-weight: 700; 
+    color: #000; 
+}
+.pack-summary {
+    text-align: center;
+    margin-top: 2px; /* СЖАТИЕ V2: Уменьшен отступ над текстом */
+    font-size: 15px;
+    font-weight: 600;
+}
+.pack-summary .soc {
+    font-size: 20px;
+    color: var(--success);
+}
+.soc-bar-container {
+  width: 100%;
+  max-width: 300px;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  margin: 8px auto 0; 
+  overflow: hidden;
+}
+.soc-bar-value {
+  height: 100%;
+  background-color: var(--success);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+.delta-info {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--muted);
+}
+.delta-value {
+    font-weight: bold;
+    color: var(--warn);
+}
+/* -- Конец визуализации -- */
+
+/* --- КОМПАКТНЫЙ АЛЕРТ --- */
+#limitedSupportAlert {
+    margin-bottom: 12px;
+}
+.alert.info{
+    background:#e3f2fd; 
+    border:1px solid #bbdefb; 
+    color:#0d47a1;
+    font-size: 13px; /* СЖАТИЕ V2: Уменьшен шрифт */
+    padding: 8px 10px; /* СЖАТИЕ V2: Уменьшен padding */
+    line-height: 1.3;
+}
+.alerts{margin-top:10px; display: flex; flex-direction: column; gap: 8px;} 
+.alert{padding:10px;border-radius:8px; font-size: 14px; line-height: 1.4;} 
+.alert.warn{background:#fff8e1;border:1px solid #ffe0b2;color:#6b3a00}
+.alert.danger{background:#ffebee;border:1px solid #ffcdd2;color:#a31b1b}
+.log-spoiler { padding: 0; }
+.log-spoiler summary {
+    padding: 10px; 
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+}
+.logbox{background:#2b2b2b; color:#a9b7c6; font-family:monospace; border-radius: 0 0 var(--radius) var(--radius);padding:12px;overflow:auto;height:200px;font-size:12px; resize: vertical; margin-top: -8px;}
+.footer{max-width:980px;margin:0 auto;padding:8px 12px;color:var(--muted);font-size:13px}
+#notification { 
+    grid-column: 1 / -1;
+    padding: 10px; 
+    margin-top: 8px; border-radius: 5px; 
+    text-align: center; font-weight: bold;
+}
+.success { background-color: #d4edda; color: #155724; }
+.danger { background-color: #f8d7da; color: #721c24; }
+.info { background-color: #d1ecf1; color: #0e566c; }
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .button-pair, .hint-pair {
+        gap: 8px;
+        max-width: 100%;
+    }
+    
+    .big {
+        font-size: 13px;
+        padding: 6px 6px; 
+        min-height: 36px;
+    }
+    
+    .btn-hint {
+        font-size: 9px;
+        min-height: 2.5em;
+    }
+    
+    .battery-pack {
+        padding: 10px;
+        gap: 4px; 
+    }
+    
+    .battery-cells {
+        gap: 8px; 
+    }
+    
+    .cell-gfx {
+        width: 55px;
+        height: 85px;
+    }
+    
+    .cell-container {
+        width: 55px;
+    }
+    
+    .cell-number {
+        width: 55px;
+        font-size: 12px;
+    }
+    
+    .cell-gfx-vol {
+        font-size: 11px;
+    }
+    
+    .topbar {
+        gap: 8px;
+    }
+    
+    .header-left {
+        order: 1; 
+    }
+    .header-right {
+        order: 2;
+    }
+    .header-status {
+        order: 3;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-pair, .hint-pair {
+        gap: 6px;
+    }
+    
+    .big {
+        font-size: 12px;
+        padding: 5px 4px;
+        min-height: 35px;
+    }
+    
+    .btn-hint {
+        font-size: 8px;
+        line-height: 1.2;
+    }
+    
+    .button-pair, .hint-pair {
+        grid-template-columns: 1fr 1fr;
+    }
+}
